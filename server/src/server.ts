@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import { connectToDatabase } from "./db";
+import authRoutes from "./routes/auth.routes";
 
 const app = express();
 app.use(express.json());
@@ -8,6 +9,8 @@ app.use(express.json());
 app.get("/health", (req, res) => {
     res.json({ status: "ok" });
 });
+
+app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT || 3001;
 
